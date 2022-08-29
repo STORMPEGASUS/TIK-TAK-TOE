@@ -32,6 +32,8 @@ class _GameScreenState extends State<GameScreen> {
   bool gameOver = false;
   //lets declare  a new game component
   Game game = Game();
+  int turn = 0;
+  String result = "";
   //score board
   List<int> scoreboard = [0, 0, 0, 0, 0, 0, 0, 0];
   //lets initialise the game board
@@ -85,6 +87,15 @@ class _GameScreenState extends State<GameScreen> {
                           if (game.board[index] == "") {
                             setState(() {
                               game.board[index] = lastvalue;
+                              turn++;
+                              gameOver = game.winnercheck(
+                                  lastvalue, index, scoreboard, 3);
+                              if (gameOver) {
+                                result = "$lastvalue is the winner";
+                              } else if (!gameOver && turn == 9) {
+                                result = "It's a Draw";
+                                gameOver = true;
+                              }
                               if (lastvalue == "X") {
                                 lastvalue = "O";
                               } else {
@@ -116,6 +127,16 @@ class _GameScreenState extends State<GameScreen> {
               }),
             ),
           ),
+          const SizedBox(
+            height: 25,
+          ),
+          Text(
+            result,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 54,
+            ),
+          ),
           ElevatedButton.icon(
             onPressed: () {
               setState(() {
@@ -123,6 +144,9 @@ class _GameScreenState extends State<GameScreen> {
                 game.board = Game.initGameboard();
                 lastvalue = "X";
                 gameOver = false;
+                turn = 0;
+                result = "";
+                scoreboard = [0, 0, 0, 0, 0, 0, 0, 0];
               });
             },
             icon: const Icon(Icons.replay),
