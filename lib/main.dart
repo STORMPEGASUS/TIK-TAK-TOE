@@ -32,7 +32,8 @@ class _GameScreenState extends State<GameScreen> {
   bool gameOver = false;
   //lets declare  a new game component
   Game game = Game();
-
+  //score board
+  List<int> scoreboard = [0, 0, 0, 0, 0, 0, 0, 0];
   //lets initialise the game board
   @override
   void initState() {
@@ -74,10 +75,24 @@ class _GameScreenState extends State<GameScreen> {
               crossAxisSpacing: 8,
               children: List.generate(Game.boardlength, (index) {
                 return InkWell(
-                  onTap: gameOver ?null:(){
-                    //when we click the area new text has to display and new screen is to be shown
-                  
-                  },
+                  onTap: gameOver
+                      ? null
+                      : () {
+                          //when we click the area new text has to display and new screen is to be shown
+                          //we also need to toggle the player
+                          //now we have to apply click only to empty field
+                          //now lets create a button to repeat the game
+                          if (game.board[index] == "") {
+                            setState(() {
+                              game.board[index] = lastvalue;
+                              if (lastvalue == "X") {
+                                lastvalue = "O";
+                              } else {
+                                lastvalue = "X";
+                              }
+                            });
+                          }
+                        },
                   child: Container(
                     width: Game.blocksize,
                     height: Game.blocksize,
@@ -100,6 +115,18 @@ class _GameScreenState extends State<GameScreen> {
                 );
               }),
             ),
+          ),
+          ElevatedButton.icon(
+            onPressed: () {
+              setState(() {
+                //erase the board
+                game.board = Game.initGameboard();
+                lastvalue = "X";
+                gameOver = false;
+              });
+            },
+            icon: const Icon(Icons.replay),
+            label: const Text("Repeat the Game"),
           ),
         ],
       ),

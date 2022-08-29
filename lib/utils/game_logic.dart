@@ -12,7 +12,13 @@ class Game {
   //creating empty blocks
 
   List<String> board = [];
-
+  
   static List<String> initGameboard() =>
       List.generate(boardlength, (index) => Player.empty);
+
+  //now we have to build the winner check algorithm
+  //for this we have to declare the score card in main file
+  bool winnercheck(String p, int index, List<int> scoreboard) {
+    return false;
+  }
 }
