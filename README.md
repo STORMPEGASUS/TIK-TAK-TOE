@@ -1,16 +1,19 @@
-# TIK=TAK-TOE
+# TIC=TAC-TOE
 
 A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+A fun app for all age groups.
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+-FLUTTER
+-DART
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Here is the detailed video of this app.
+
+
+https://user-images.githubusercontent.com/84672906/198892893-085491a5-4adb-42f2-a52d-0c679fc2588c.mp4
+
+
